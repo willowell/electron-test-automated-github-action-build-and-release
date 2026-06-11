@@ -6,6 +6,9 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build-windows:
     runs-on: windows-latest
@@ -20,4 +23,4 @@ jobs:
       - name: Publish app
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: npx electron-forge publish
+        run: npm run publish
