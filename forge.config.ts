@@ -10,6 +10,18 @@ const config: ForgeConfig = {
   },
   rebuildConfig: {},
   makers: [new MakerZIP({})],
+  publishers: [
+    {
+      name: "@electron-forge/publisher-github",
+      config: {
+        repository: {
+          owner: "willowell",
+          name: "electron-test-automated-github-action-build-and-release",
+        },
+        prerelease: true,
+      },
+    },
+  ],
   plugins: [
     new VitePlugin({
       // `build` can specify multiple entry builds, which can be Main process, Preload scripts, Worker process, etc.
