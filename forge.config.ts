@@ -5,6 +5,12 @@ import { VitePlugin } from "@electron-forge/plugin-vite";
 import { FusesPlugin } from "@electron-forge/plugin-fuses";
 import { FuseV1Options, FuseVersion } from "@electron/fuses";
 
+import packageConfig from "./package.json";
+
+const commitSha = process.env.GITHUB_SHA
+  ? process.env.GITHUB_SHA.substring(0, 7)
+  : "local";
+
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
@@ -21,6 +27,8 @@ const config: ForgeConfig = {
         },
         prerelease: false,
         draft: true,
+        force: true,
+        tagPrefix: `v${packageConfig.version}-${commitSha}`,
       },
     },
   ],
